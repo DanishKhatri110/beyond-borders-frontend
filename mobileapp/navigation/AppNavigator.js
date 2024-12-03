@@ -7,7 +7,12 @@ import SplashScreen from '../screens/SplashScreen';
 import LoginScreen from '../screens/LoginScreen';
 import SignupScreen from '../screens/SignupScreen';
 import SignupDetails from '../screens/SignupDetails';
-import LanguageScreen from '../screens/LanguageScreen.js';
+import LanguageScreen from '../screens/LanguageScreen';
+import MeetingOptionsScreen from '../screens/MeetingOptionsScreen';
+import SelectModeScreen from '../screens/SelectModeScreen';
+import MeetingCodeScreen from '../screens/MeetingCodeScreen';
+import ChatScreen from '../screens/ChatScreen';
+import VoiceModeScreen from '../screens/VoiceModeScreen';
 // Import other screens here
 
 const Stack = createNativeStackNavigator();
@@ -21,6 +26,12 @@ const AppNavigator = () => {
         <Stack.Screen name="Signup" component={SignupScreen} />
         <Stack.Screen name="SignupDetails" component={SignupDetails} />
         <Stack.Screen name="LanguageSelect" component={LanguageScreen} />
+        <Stack.Screen name="MeetingOptions" component={MeetingOptionsScreen} />
+        <Stack.Screen name="SelectMode" component={SelectModeScreen} />
+        <Stack.Screen name="MeetingCode" component={MeetingCodeScreen} />
+        <Stack.Screen name="ChatScreen" component={ChatScreen} />
+        {/* <Stack.Screen name="ChatScreen" component={ChatScreen} /> */}
+      <Stack.Screen name="VoiceModeScreen" component={VoiceModeScreen} />
         {/* Add other screens here */}
       </Stack.Navigator>
     </NavigationContainer>
