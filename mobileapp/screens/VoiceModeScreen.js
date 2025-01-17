@@ -9,31 +9,31 @@ const VoiceModeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       {/* Speaker Section */}
-      <View style={styles.speakerContainer}>
-        <TouchableOpacity style={styles.speakerIcon}>
-          <Text style={styles.iconText}>🔊</Text> {/* Replace with speaker icon */}
-        </TouchableOpacity>
-        <View style={styles.voiceMessages}>
-          <Text style={styles.voiceText}>Hmm...</Text>
-          <Text style={styles.voiceText}>
-            I think I get it... Will head to the Help Center if I have more
-            questions.
-          </Text>
+        <View style={styles.speakerContainer}>
+          <TouchableOpacity style={styles.speakerIcon}>
+          <Text style={styles.iconText}>🔊</Text> {/* Replace with speaker icon*/}
+          </TouchableOpacity>
+          <View style={styles.voiceMessages}>
+            <Text style={styles.voiceText}>Hmm...</Text>
+            <Text style={styles.voiceText}>
+              I think I get it... Will head to the Help Center if I have more
+              questions.
+            </Text>
+          </View>
         </View>
-      </View>
 
-      {/* Microphone Section */}
-      <View style={styles.microphoneContainer}>
-        <TouchableOpacity style={styles.microphoneIcon}>
-          <Text style={styles.iconText}>🎙️</Text> {/* Replace with mic icon */}
+        {/* Microphone Section */}
+        <View style={styles.microphoneContainer}>
+          <TouchableOpacity style={styles.microphoneIcon}>
+            <Text style={styles.iconText}>🎙️</Text> {/* Replace with mic icon */}
+          </TouchableOpacity>
+          <Text style={styles.recordText}>Tap to record...</Text>
+        </View>
+
+        {/* Toggle Back to Chat */}
+        <TouchableOpacity style={styles.backButton} onPress={handleToggleToChat}>
+          <Text style={styles.backButtonText}>Back to Chat</Text>
         </TouchableOpacity>
-        <Text style={styles.recordText}>Tap to record...</Text>
-      </View>
-
-      {/* Toggle Back to Chat */}
-      <TouchableOpacity style={styles.backButton} onPress={handleToggleToChat}>
-        <Text style={styles.backButtonText}>Back to Chat</Text>
-      </TouchableOpacity>
     </View>
   );
 };
