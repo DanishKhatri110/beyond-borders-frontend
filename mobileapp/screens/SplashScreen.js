@@ -8,11 +8,11 @@ const SplashScreen = ({ navigation }) => {
       navigation.replace('Login');
     }, 3000); // 3 seconds delay
   }, [navigation]);
-
+  
   return (
     <View style={styles.container}>
       <Image source={require('../assets/splash.png')} style={styles.logo} />
-      <Text style={styles.title}>BeYondBoders</Text>
+      <Text style={[styles.title]}>BeYondBoders</Text>
       <Text style={styles.subtitle}>Speak Freely, Understand Instantly.</Text>
     </View>
   );
@@ -26,19 +26,21 @@ const styles = StyleSheet.create({
     backgroundColor: '#000',
   },
   logo: {
-    width: 200,
-    height: 200,
+    marginBottom:'10%',
+    width: 250,
+    height: 250,
   },
   title: {
     color: '#800080',
-    fontSize: 30,
+    fontSize: 50,
     fontWeight: 'bold',
-    marginTop: 20,
+    marginTop:'-10%',
   },
   subtitle: {
-    color: '#fff',
-    fontSize: 18,
-    marginTop: 10,
+    color: '#800080',
+    fontSize: 20,
+    marginLeft: '7%',
+    marginBottom:'15%',
   },
 });
 
