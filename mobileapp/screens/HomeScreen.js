@@ -1,10 +1,26 @@
 // screens/HomeScreen.js
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, Linking} from 'react-native';
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
+   const handleTermsPress = () => {
+    Linking.openURL('https://en.wikipedia.org/wiki/Service_provider#:~:text=A%20service%20provider%20(SP)%20is,third%2Dparty%20or%20outsourced%20supplier.');
+  };
+
+  const handlePrivacyPress = () => {
+    Linking.openURL('https://www.privacypolicygenerator.info/');
+  };
+
+  const handleLoginPress = () => {
+    console.log("Navigating to Login..."); // Replace with your navigation code
+    navigation.navigate('Login');
+  };
   return (
-     <View style={styles.container}>
+    <View style={styles.container}>
+      <Text style={styles.imageText}>Speak Freely, Understand Instantly.</Text>
+      <View style={styles.imageView}> 
+        <Image source={require('../assets/persons.png')} style={styles.image} />
+      </View>  
       <Text style={styles.title}>BeyondBorders</Text>
       <Text style={styles.subtitle}>Create an account</Text>
       <Text style={styles.label}>Enter your email to sign up for this app</Text>
@@ -24,12 +40,23 @@ const HomeScreen = () => {
       </TouchableOpacity>
 
       <Text style={styles.terms}>
-        By clicking continue, you agree to our Terms of Service and Privacy Policy
+        By clicking continue, you agree to our{' '}
+        <Text style={styles.link} onPress={handleTermsPress}>
+          Terms of Service
+        </Text>{' '}
+        and{' '}
+        <Text style={styles.link} onPress={handlePrivacyPress}>
+          Privacy Policy
+        </Text>.
       </Text>
-
-      <TouchableOpacity>
-        <Text style={styles.login}>Already have an account? Log in</Text>
-      </TouchableOpacity>
+    
+      <Text style={styles.login}>Already have an account?{' '}
+        {/* <TouchableOpacity onPress={handleLoginPress}> */}
+        <Text style={styles.link} onPress={handleLoginPress}>
+          Login
+        </Text>
+        {/* </TouchableOpacity>   */}
+      </Text>
     </View>
   );
 };
@@ -41,6 +68,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
+  },
+  imageText: {
+    fontSize: 15,
+    color: '#fff',
+    marginBottom: 20,
+  },  
+  imageView: {
+    marginTop: '-5%',
+    marginBottom:'-5%',
+  },
+  image: {
+    width: 200,
+    height:200,
   },
   title: {
     fontSize: 36,
@@ -65,7 +105,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   button: {
-    backgroundColor: '#0f0',
+    backgroundColor: '#00564D',
     padding: 15,
     borderRadius: 5,
     marginBottom: 10,
@@ -93,17 +133,22 @@ const styles = StyleSheet.create({
   googleButtonText: {
     color: '#000',
     fontWeight: 'bold',
-    marginLeft: 10,
   },
   terms: {
     color: '#fff',
-    fontSize: 12,
+    fontSize: 15,
     textAlign: 'center',
-    marginBottom: 15,
+    marginBottom: '4%',
+  },
+  link: {
+    color: '#00564D',
+    // fontSize:15,
+    // textDecorationLine: 'underline',
   },
   login: {
     color: '#fff',
-    textDecorationLine: 'underline',
+    // fontSize:15,
+    // textDecorationLine: 'underline',
   },
 });
 

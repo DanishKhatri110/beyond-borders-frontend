@@ -3,15 +3,14 @@ import React,{ useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
-
 const LanguageScreen = ({ navigation }) => {
   const [selectedLanguage, setSelectedLanguage] = useState('');
 
   return (
     <View style={styles.container}>
-    <Image source={require('../assets/splash.png')} style={styles.image} />
-    <Text style={styles.title}>Select Language</Text>
-    <View style={styles.pickerContainer}>
+    <Image source={require('../assets/group.png')} style={styles.image} />
+    <Text style={styles.languageText}>Select Language</Text>
+    {/* <View style={styles.pickerContainer}>
       <Picker
         selectedValue={selectedLanguage}
         onValueChange={(itemValue, itemIndex) => setSelectedLanguage(itemValue)}
@@ -23,11 +22,26 @@ const LanguageScreen = ({ navigation }) => {
         <Picker.Item label="German" value="de" />
         <Picker.Item label="Chinese" value="zh" />
         {/* Add more languages as needed */}
-      </Picker>
-    </View>
+      {/* </Picker>
+    </View> */} 
+       <View style={styles.dropdownContainer}>
+        <Picker
+          selectedValue={selectedLanguage}
+          onValueChange={(itemValue) => setSelectedLanguage(itemValue)}
+          style={styles.picker}
+          dropdownIconColor="#fff"
+          mode='dialog'
+        >
+          <Picker.Item label="Preferred Language" value="" />
+          <Picker.Item label="English" value="english" />
+          <Picker.Item label="German" value="german" />
+          <Picker.Item label="Spanish" value="spanish" />
+          <Picker.Item label="Mandarin" value="mandarin" />
+        </Picker>
+      </View>
     <TouchableOpacity
         style={styles.selectButton}
-        onPress={() => navigation.navigate('SignupDetails')}
+        onPress={() => navigation.navigate('Login')}
       >
         <Text style={styles.buttonText}>Select</Text>
       </TouchableOpacity>
@@ -44,38 +58,40 @@ const styles = StyleSheet.create({
     backgroundColor: '#000',
   },
   image: {
-    width: 150,
-    height: 150,
+    width: 350,
+    height: 200,
   },
-  title: {
-    color: '#000',
-    fontSize: 24,
-    marginVertical: 20,
+  languageText: {
+    color: "#fff",
+    fontSize: 32,
+    fontWeight: "bold",
+    marginBottom: '5%',
   },
-  pickerContainer: {
-    width: '80%',
-    height: 50,
-    backgroundColor: '#000',
+  dropdownContainer: {
+    backgroundColor: "#000", // Dark background for dropdown
     borderRadius: 5,
-    marginVertical: 10,
-    justifyContent: 'center',
+    width: "80%",
+    height: 50,
+    justifyContent: "center",
+    paddingHorizontal: '3%',
+    marginTop: '5%',
+
   },
   picker: {
-    color: '#fff',
-    backgroundColor:'#000'
+    color: "#fff", // White text in dropdown
   },
   selectButton: {
     width: '80%',
-    height: 40,
+    height: 50,
     backgroundColor: '#00564D',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 5,
-    marginVertical: 10,
+    marginVertical: '3%',
   },
   buttonText: {
     color: '#fff',
-    fontSize: 16,
+    fontSize: 20,
   },
 });
 
