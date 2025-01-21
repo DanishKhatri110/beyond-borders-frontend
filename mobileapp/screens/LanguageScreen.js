@@ -10,20 +10,6 @@ const LanguageScreen = ({ navigation }) => {
     <View style={styles.container}>
     <Image source={require('../assets/group.png')} style={styles.image} />
     <Text style={styles.languageText}>Select Language</Text>
-    {/* <View style={styles.pickerContainer}>
-      <Picker
-        selectedValue={selectedLanguage}
-        onValueChange={(itemValue, itemIndex) => setSelectedLanguage(itemValue)}
-        style={styles.picker}
-      >
-        <Picker.Item label="English" value="en" />
-        <Picker.Item label="Spanish" value="es" />
-        <Picker.Item label="French" value="fr" />
-        <Picker.Item label="German" value="de" />
-        <Picker.Item label="Chinese" value="zh" />
-        {/* Add more languages as needed */}
-      {/* </Picker>
-    </View> */} 
        <View style={styles.dropdownContainer}>
         <Picker
           selectedValue={selectedLanguage}
@@ -41,7 +27,7 @@ const LanguageScreen = ({ navigation }) => {
       </View>
     <TouchableOpacity
         style={styles.selectButton}
-        onPress={() => navigation.navigate('Login')}
+        onPress={() => navigation.navigate('Profile')}
       >
         <Text style={styles.buttonText}>Select</Text>
       </TouchableOpacity>
@@ -63,22 +49,28 @@ const styles = StyleSheet.create({
   },
   languageText: {
     color: "#fff",
-    fontSize: 32,
+    fontSize: 15,
     fontWeight: "bold",
-    marginBottom: '5%',
+    // marginBottom: '5%',
   },
   dropdownContainer: {
-    backgroundColor: "#000", // Dark background for dropdown
+    backgroundColor: "#222", // Dark background for dropdown
     borderRadius: 5,
     width: "80%",
     height: 50,
     justifyContent: "center",
     paddingHorizontal: '3%',
     marginTop: '5%',
+    // borderWidth: 1,
+    // borderColor:'#fff'
 
   },
   picker: {
-    color: "#fff", // White text in dropdown
+    color: "#fff",// White text in dropdown
+  },
+  labelText: {
+    // color: "#fff",
+    // backgroundColor: "#222",
   },
   selectButton: {
     width: '80%',
