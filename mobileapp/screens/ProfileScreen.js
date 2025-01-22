@@ -4,9 +4,9 @@ import {LinearGradient}  from 'expo-linear-gradient';
 import { Title, Card } from 'react-native-paper';
 import { FontAwesome } from '@expo/vector-icons';
 
-const ProfileScreen = ({navigation}) => {
+const ProfileScreen = ({route , navigation}) => {
   
-
+  const { email, username, mobileNumber, language } = route.params || {};
   const handleEdit = () => {
     navigation.navigate('EditProfile');
   }; 
@@ -34,19 +34,20 @@ const ProfileScreen = ({navigation}) => {
           </View>
       
       <View style={styles.titleView}>
-            <Title style={{fontSize:30, color:"#fff"}}>Halley Cameron</Title>
+        <Title style={{ fontSize: 30, color: "#fff" }}>{username}</Title>
+        <Text style={{ fontSize: 15, color: '#fff' }}>{email}</Text>
       </View>
       
       <Card style={styles.myCard}  onPress={() => openDial()}>
         <View style={styles.cardContent} >
                 <FontAwesome name="phone" color="#00564D" size={40}/>        
-              <Text style={styles.myText}>03213390829</Text>
+          <Text style={styles.myText}>{mobileNumber}</Text>
           </View>
       </Card>
       <Card style={styles.myCard}>
         <View style={styles.cardContent} >
           <FontAwesome name="language" color="#00564D" size={40}/>        
-              <Text style={styles.myText}>English</Text>
+          <Text style={styles.myText}>{language || 'Not specified'}</Text>
           </View>
       </Card>
 

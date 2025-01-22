@@ -3,8 +3,26 @@ import React,{ useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
-const LanguageScreen = ({ navigation }) => {
+const LanguageScreen = ({ route , navigation }) => {
+
+  const { email, username, mobileNumber } = route.params;
+
   const [selectedLanguage, setSelectedLanguage] = useState('');
+
+  const handleLanguageChange = (itemValue) => {
+    // Capitalize the first letter of the selected language
+    const capitalizedLanguage = itemValue.charAt(0).toUpperCase() + itemValue.slice(1);
+    setSelectedLanguage(capitalizedLanguage);
+  };
+
+  const handleSelectLanguage = () => {
+    navigation.navigate('Profile', {
+      email,
+      username,
+      mobileNumber,
+      language: selectedLanguage,
+    });
+  };
 
   return (
     <View style={styles.container}>
@@ -13,7 +31,7 @@ const LanguageScreen = ({ navigation }) => {
        <View style={styles.dropdownContainer}>
         <Picker
           selectedValue={selectedLanguage}
-          onValueChange={(itemValue) => setSelectedLanguage(itemValue)}
+          onValueChange={handleLanguageChange}
           style={styles.picker}
           dropdownIconColor="#fff"
           mode='dialog'
@@ -27,11 +45,11 @@ const LanguageScreen = ({ navigation }) => {
       </View>
     <TouchableOpacity
         style={styles.selectButton}
-        onPress={() => navigation.navigate('Profile')}
+        onPress={handleSelectLanguage}
+        disabled={!selectedLanguage}
       >
         <Text style={styles.buttonText}>Select</Text>
       </TouchableOpacity>
-    {/* <Button title="Select" onPress={() => navigation.navigate('SignupDetails')} /> */}
   </View>
   );
 };

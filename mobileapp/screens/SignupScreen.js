@@ -1,15 +1,20 @@
 // screens/SignupScreen.js
-import React from 'react';
+import React, {useState} from 'react';
 import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity, Image, Linking } from 'react-native';
 
 const SignupScreen = ({ navigation }) => {
-   const handleTermsPress = () => {
+  const [signupEmail, setSignupEmail] = useState('');
+   const handleTermsOfSevicePress = () => {
      Linking.openURL('https://en.wikipedia.org/wiki/Service_provider#:~:text=A%20service%20provider%20(SP)%20is,third%2Dparty%20or%20outsourced%20supplier.');
    };
  
-   const handlePrivacyPress = () => {
+   const handlePrivacyPolicyPress = () => {
      Linking.openURL('https://www.privacypolicygenerator.info/');
    };
+  
+  const handleSignupPress = () => {
+    navigation.navigate('SignupDetails', { email:signupEmail });
+  };
  
    const handleLoginPress = () => {
      console.log("Navigating to Login..."); // Replace with your navigation code
@@ -26,13 +31,15 @@ const SignupScreen = ({ navigation }) => {
        <Text style={styles.label}>Enter your email to sign up for this app</Text>
        <TextInput
          style={styles.input}
+         value={signupEmail}
+         onChangeText={setSignupEmail}
          placeholderTextColor="#A4A4A4"
          placeholder="email@domain.com"
          keyboardType="email-address"
        />
        <TouchableOpacity
          style={styles.button}
-         onPress={()=>{navigation.navigate('SignupDetails')}}
+         onPress={handleSignupPress}
        >
          <Text style={styles.buttonText}>Sign up with email</Text>
        </TouchableOpacity>
@@ -46,11 +53,11 @@ const SignupScreen = ({ navigation }) => {
  
        <Text style={styles.terms}>
          By clicking continue, you agree to our{' '}
-         <Text style={styles.link} onPress={handleTermsPress}>
+         <Text style={styles.link} onPress={handleTermsOfSevicePress}>
            Terms of Service
          </Text>{' '}
          and{' '}
-         <Text style={styles.link} onPress={handlePrivacyPress}>
+         <Text style={styles.link} onPress={handlePrivacyPolicyPress}>
            Privacy Policy
          </Text>.
        </Text>

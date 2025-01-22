@@ -3,7 +3,8 @@ import React, {useState} from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { MaterialIcons } from "@expo/vector-icons";
 
-const SignupDetails = ({ navigation }) => {
+const SignupDetails = ({ route, navigation }) => {
+  const { email } = route.params;
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -16,7 +17,11 @@ const SignupDetails = ({ navigation }) => {
     console.log("Password:", password);
     console.log("Confirm Password:", confirmPassword);
     console.log("Mobile Number:", mobileNumber);
-    navigation.navigate('LanguageSelect')
+    navigation.navigate('LanguageSelect', {
+      email,
+      username,
+      mobileNumber,
+    });
   };
 
   const togglePasswordVisibility = () => {
@@ -26,6 +31,8 @@ const SignupDetails = ({ navigation }) => {
   const toggleConfirmPasswordVisibility = () => {
     setIsConfirmPasswordVisible(!isConfirmPasswordVisible);
   };
+
+
 
   return (
     <View style={styles.container}>
