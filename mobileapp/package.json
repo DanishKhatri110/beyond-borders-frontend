@@ -33,7 +33,9 @@
     "react-native-svg": "15.8.0",
     "react-native-web": "~0.19.13",
     "undefined": "expo-auth-session/providers/google",
-    "expo-image-picker": "~16.0.4"
+    "expo-image-picker": "~16.0.4",
+    "expo-linear-gradient": "~14.0.2",
+    "expo-constants": "~17.0.4"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
