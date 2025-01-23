@@ -27,11 +27,11 @@ const ProfileScreen = ({route , navigation}) => {
 
       {/* Image Frame */}
         
-          <View style={styles.imageView}>
+      <View style={styles.imageView}>
         <TouchableOpacity style={styles.imageFrame} onPress={() => console.log('profileImage')}>
               <Image source={require('../assets/person.jpg')} style={styles.image} />
-      </TouchableOpacity>                
-          </View>
+        </TouchableOpacity>                
+      </View>
       
       <View style={styles.titleView}>
         <Title style={{ fontSize: 30, color: "#fff" }}>{username}</Title>
