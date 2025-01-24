@@ -4,7 +4,7 @@ import { Picker } from "@react-native-picker/picker";
 import { MaterialIcons } from "@expo/vector-icons";
 
 const EditProfileScreen = () => {
-  
+
   const [username, setUsername] = useState("Halley Cameron");
   const [mobileNumber, setMobileNumber] = useState("03213390729");
   const [password, setPassword] = useState("");
@@ -102,7 +102,7 @@ const EditProfileScreen = () => {
       </View>
 
       {/* Language Picker */}
-      <Text style={styles.label}>Language Selected</Text>
+      <Text style={styles.label}>Preferred Language</Text>
       <View style={styles.pickerContainer}>
         <Picker
           selectedValue={language}
@@ -111,9 +111,10 @@ const EditProfileScreen = () => {
           dropdownIconColor="#fff"
           mode='dropdown'
         >
-          <Picker.Item label="English" value="English" />
-          <Picker.Item label="Spanish" value="Spanish" />
-          <Picker.Item label="French" value="French" />
+          <Picker.Item label="English" value="english" />
+          <Picker.Item label="German" value="german" />
+          <Picker.Item label="Spanish" value="spanish" />
+          <Picker.Item label="Mandarin" value="mandarin" />
         </Picker>
       </View>
 

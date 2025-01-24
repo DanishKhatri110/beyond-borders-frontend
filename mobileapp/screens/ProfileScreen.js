@@ -7,10 +7,15 @@ import { FontAwesome } from '@expo/vector-icons';
 const ProfileScreen = ({route , navigation}) => {
   
   const { email, username, mobileNumber, language } = route.params || {};
+
+  
   const handleEdit = () => {
     navigation.navigate('EditProfile');
   }; 
-  
+  const handleLoginPress = () => {
+     console.log("Navigating to Login..."); // Replace with your navigation code
+     navigation.navigate('Login');
+   };
   
   const openDial = () => {
         if (Platform.OS === 'android') {
@@ -56,6 +61,14 @@ const ProfileScreen = ({route , navigation}) => {
           <Text style={styles.editButtonText}>Edit</Text>
         </View>
       </TouchableOpacity>
+
+      <View style={styles.loginView}>
+        <Text style={styles.login}>Already have an account?{' '}
+          <Text style={styles.link} onPress={handleLoginPress}>
+            Login
+          </Text>
+        </Text>
+      </View>
     </View>
   )
 }
@@ -129,6 +142,15 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 18,
     fontWeight: "bold",
+  },
+  loginView: {
+    alignItems:'center',
+  },
+  login: {
+    color: '#fff',
+  },
+  link: {
+    color: '#00564D',
   },
 }
 )
