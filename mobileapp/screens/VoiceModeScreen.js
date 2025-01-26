@@ -11,7 +11,7 @@ const VoiceModeScreen = ({ navigation }) => {
       {/* Speaker Section */}
         <View style={styles.speakerContainer}>
           <TouchableOpacity style={styles.speakerIcon}>
-          <Text style={styles.iconText}>🔊</Text> {/* Replace with speaker icon*/}
+          <Text style={styles.iconText}></Text> {/* Replace with speaker icon*/}
           </TouchableOpacity>
           <View style={styles.voiceMessages}>
             <Text style={styles.voiceText}>Hmm...</Text>
@@ -25,7 +25,7 @@ const VoiceModeScreen = ({ navigation }) => {
         {/* Microphone Section */}
         <View style={styles.microphoneContainer}>
           <TouchableOpacity style={styles.microphoneIcon}>
-            <Text style={styles.iconText}>🎙️</Text> {/* Replace with mic icon */}
+            <Text style={styles.iconText}></Text> {/* Replace with mic icon */}
           </TouchableOpacity>
           <Text style={styles.recordText}>Tap to record...</Text>
         </View>

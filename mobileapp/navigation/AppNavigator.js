@@ -33,7 +33,6 @@ const AppNavigator = () => {
         <Stack.Screen name="SelectMode" component={SelectModeScreen} />
         <Stack.Screen name="MeetingCode" component={MeetingCodeScreen} />
         <Stack.Screen name="ChatScreen" component={ChatScreen} />
-        {/* <Stack.Screen name="ChatScreen" component={ChatScreen} /> */}
         <Stack.Screen name="VoiceModeScreen" component={VoiceModeScreen} />
         <Stack.Screen name="EditProfile" component={EditProfileScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen}/>

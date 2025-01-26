@@ -21,7 +21,7 @@ const MeetingCodeScreen = ({ navigation }) => {
 
   const handleProceed = () => {
     // Alert.alert("Proceeding", "You are joining the meeting!");
-    navigation.navigate('VoiceModeScreen')
+    navigation.navigate("ChatScreen")
     // Add navigation or meeting joining logic here.
   };
 
@@ -183,10 +183,3 @@ const styles = StyleSheet.create({
 
 export default MeetingCodeScreen;
 
-
- {/* <TouchableOpacity
-        style={styles.proceedButton}
-        onPress={() => navigation.navigate('VoiceModeScreen')}
-      >
-        <Text style={styles.buttonText}>Proceed</Text>
-      </TouchableOpacity> */}

@@ -21,6 +21,7 @@ const SelectModeScreen = ({ navigation }) => {
     // Optionally, use inputValue here to handle logic for the number of people
     console.log("Number of people:", inputValue);
     setInputValue(""); // Clear input field
+    navigation.navigate("ChatScreen")
   };
 
   return (
