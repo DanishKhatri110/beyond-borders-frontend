@@ -63,7 +63,7 @@ const ProfileScreen = ({route , navigation}) => {
       </TouchableOpacity>
 
       <View style={styles.loginView}>
-        <Text style={styles.login}>Already have an account?{' '}
+        <Text style={styles.login}>Account Is Created Go To?{' '}
           <Text style={styles.link} onPress={handleLoginPress}>
             Login
           </Text>

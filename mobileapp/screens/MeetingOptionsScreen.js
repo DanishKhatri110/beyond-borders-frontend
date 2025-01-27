@@ -22,11 +22,11 @@ const MeetingOptionsScreen = ({ navigation }) => {
   return (
      <KeyboardAvoidingView
       style={styles.container}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      behavior={Platform.OS === "ios" ? "padding" : undefined}
     >
       <ScrollView
         contentContainerStyle={styles.scrollContent}
-        keyboardShouldPersistTaps="handled"
+        // keyboardShouldPersistTaps="handled"
       >
       <Image
         source={require('../assets/icon.png')}
@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
     
   },
   scrollContent: {
+    flex:1,
     alignItems: "center",
     paddingHorizontal: '5%',
     paddingVertical: '2%',
@@ -128,8 +129,10 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    height: 40,
+    // height: 40,
     color: "#fff",
+    //  backgroundColor: "#333", // Add this line
+    paddingVertical: '2%',    // Optional: Add padding for better usability
   },
   button: {
     backgroundColor: "#00564D",
