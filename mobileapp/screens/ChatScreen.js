@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View,Image, Text, TextInput, TouchableOpacity, Modal, StyleSheet, FlatList, Alert} from 'react-native';
+import React, { useState, useRef } from 'react';
+import { View,Image, Text, TextInput, TouchableOpacity, Modal, StyleSheet, FlatList, Alert, KeyboardAvoidingView, Platform} from 'react-native';
 import * as Clipboard from "expo-clipboard";
 import QRCode from "react-native-qrcode-svg";
 import { FontAwesome, MaterialIcons, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
@@ -32,6 +32,8 @@ const ChatScreen = ({ navigation }) => {
   const [isQrModalVisible, setQrModalVisible] = useState(false);
   const [isEndModalVisible, setEndModalVisible] = useState(false);
   const [addPeople, setAddPeople] = useState("");
+  const flatListRef = useRef(null);
+  // <FlatList>
 
   const sendMessage = () => {
     if (newMessage.trim().length > 0) {
@@ -39,7 +41,12 @@ const ChatScreen = ({ navigation }) => {
         ...prev,
         { id: Date.now().toString(), text: newMessage, isUser: true },
       ]);
+
+      // setNewMessage("");
       setNewMessage("");
+
+      // Scroll to the last message
+       setTimeout(() => flatListRef.current?.scrollToEnd({ animated: true }), 100);
     }
   };
   const [meetingCode] = useState("MDIF-3094I-9023K");
@@ -72,15 +79,16 @@ const ChatScreen = ({ navigation }) => {
   // };
     const [isMuted, setIsMuted] = useState(false); // State to track mute/unmute
 
-  const toggleMute = () => {
-    setIsMuted(!isMuted); // Toggle mute/unmute state
-  };
+    const toggleMute = () => {
+      setIsMuted(!isMuted); // Toggle mute/unmute state
+    };
 
   return (
     
-    <View
-        style={styles.container}
-      >
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+    >
       {/* Top Menu Bar */}
       <View style={styles.menuBar}>
         <Text style={styles.title}>Chat</Text>
@@ -98,6 +106,38 @@ const ChatScreen = ({ navigation }) => {
           <Ionicons name="ellipsis-vertical" size={24} color="#fff" />
         </TouchableOpacity>
       </View>
+
+      {/* Chat Messages */}
+     
+      <FlatList
+        ref={flatListRef}
+        data={messages}
+        renderItem={renderMessage}
+        keyExtractor={(item) => item.id}
+        contentContainerStyle={styles.chatContainer}
+        // keyboardDismissMode="on-drag"
+        keyboardShouldPersistTaps="handled" 
+        automaticallyAdjustKeyboardInsets
+          />   
+
+      {/* Input Area */}
+     
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.textInput}
+          placeholder="Message..."
+          placeholderTextColor="#aaa"
+          value={newMessage}
+          onChangeText={setNewMessage}
+          
+          />
+        <TouchableOpacity onPress={()=>navigation.navigate("VoiceModeScreen")} style={styles.sendButton}>
+          <FontAwesome name="microphone" size={24} color="#fff" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={sendMessage} style={styles.sendButton}>
+          <Ionicons name="send" size={24} color="#fff" />
+          </TouchableOpacity>
+        </View>  
 
       {/* Modal */}
         <Modal
@@ -212,22 +252,22 @@ const ChatScreen = ({ navigation }) => {
         {/* QR Code Section */}
         <Text style={styles.qrLabel}>Scan QR code to enter meeting</Text>
         <View style={styles.qrView}>  
-        <QRCode
-          value={meetingCode}
-          size={200}
-          backgroundColor="white"
-          color="black"
+            <QRCode
+              value={meetingCode}
+              size={200}
+              backgroundColor="white"
+              color="black"
             />
-          </View>    
-           <Text style={styles.underLined}></Text>
+        </View>    
+        <Text style={styles.underLined}></Text>
     
           {/* Share QR Code */}
             
           <View style={styles.linkView}>
             <Text style={styles.shareLink}>{' '}
-                      <Text style={styles.link} onPress={handleShareQRCode}>
-                        Click here
-                      </Text>{' '} to share QR code.</Text>
+              <Text style={styles.link} onPress={handleShareQRCode}>
+                Click here
+              </Text>{' '} to share QR code.</Text>
           </View>
           <View style={styles.qrCodePlaceholder} />
           <TouchableOpacity
@@ -266,43 +306,9 @@ const ChatScreen = ({ navigation }) => {
             </TouchableOpacity>
           </View>
         </View>
-      </Modal>
-
-      {/* Chat Messages */}
-      
-        
-     
-      
-      <FlatList
-        data={messages}
-        renderItem={renderMessage}
-        keyExtractor={(item) => item.id}
-        contentContainerStyle={styles.chatContainer}
-        keyboardDismissMode="on-drag"
-        keyboardShouldPersistTaps="handled" 
-          />  
-        
-         
-
-      {/* Input Area */}
-     
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.textInput}
-          placeholder="Message..."
-          placeholderTextColor="#aaa"
-          value={newMessage}
-          onChangeText={setNewMessage}
-          />
-        <TouchableOpacity onPress={()=>navigation.navigate("VoiceModeScreen")} style={styles.sendButton}>
-          <FontAwesome name="microphone" size={24} color="#fff" />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={sendMessage} style={styles.sendButton}>
-          <Ionicons name="send" size={24} color="#fff" />
-          </TouchableOpacity>
-        </View>  
-
-      </View>
+        </Modal>
+       
+      </KeyboardAvoidingView>
       
       
   );
@@ -320,6 +326,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: '5',
     paddingVertical: '3%',
     backgroundColor: "#06696b",
+    flexGrow:0,
   },
   
   title: {
@@ -329,7 +336,7 @@ const styles = StyleSheet.create({
   },
   chatContainer: {
     paddingHorizontal: '3%',
-    paddingBottom: '3%',
+    paddingBottom: '2%',
   },
   messageBubble: {
     maxWidth: "80%",
@@ -379,7 +386,7 @@ const styles = StyleSheet.create({
     // justifyContent: "center",
     // alignItems: "center",
     
-    // backgroundColor: "rgba(0, 0, 0, 0.8)",
+    backgroundColor: "rgba(0, 0, 0, 0.8)",
   },
   modalContent: {
     backgroundColor: "#000",

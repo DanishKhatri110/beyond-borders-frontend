@@ -16,6 +16,7 @@ import ChatScreen from '../screens/ChatScreen';
 import VoiceModeScreen from '../screens/VoiceModeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import EditProfileScreen from '../screens/EditProfileScreen';
+import VoiceModeScreen1 from '../screens/VoiceModeScreen1';
 // Import other screens here
 
 const Stack = createNativeStackNavigator();
@@ -35,7 +36,8 @@ const AppNavigator = () => {
         <Stack.Screen name="ChatScreen" component={ChatScreen} />
         <Stack.Screen name="VoiceModeScreen" component={VoiceModeScreen} />
         <Stack.Screen name="EditProfile" component={EditProfileScreen} />
-        <Stack.Screen name="Profile" component={ProfileScreen}/>
+        <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="VoiceModeScreen1" component={VoiceModeScreen1} />
         {/* Add other screens here */}
       </Stack.Navigator>
     </NavigationContainer>
