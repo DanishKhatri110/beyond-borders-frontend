@@ -119,7 +119,7 @@ const VoiceModeScreen1 = () => {
     <View style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <MaterialIcons name="language" size={30} color="#fff" />
+        {/* <MaterialIcons name="language" size={30} color="#fff" /> */}
         <Text style={styles.headerText}>Audio to audio mode</Text>
         <Ionicons name="volume-high" size={30} color="#fff" />
       </View>
@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingHorizontal: 16,
-    paddingTop: 20,
+    paddingTop: 30,
   },
   card: {
     backgroundColor: "#111",

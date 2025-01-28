@@ -131,7 +131,7 @@ const ChatScreen = ({ navigation }) => {
           onChangeText={setNewMessage}
           
           />
-        <TouchableOpacity onPress={()=>navigation.navigate("VoiceModeScreen")} style={styles.sendButton}>
+        <TouchableOpacity onPress={()=>navigation.navigate("VoiceModeScreen1")} style={styles.sendButton}>
           <FontAwesome name="microphone" size={24} color="#fff" />
         </TouchableOpacity>
         <TouchableOpacity onPress={sendMessage} style={styles.sendButton}>
