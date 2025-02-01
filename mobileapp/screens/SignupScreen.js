@@ -71,6 +71,8 @@ const SignupScreen = ({ navigation }) => {
   );
 };
 
+export default SignupScreen;
+
 const styles = StyleSheet.create({
  container: {
     flex: 1,
@@ -141,16 +143,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    columnGap: "3%",
   },
-  // googleIcon: {
-  //   marginRight: 10, // Add space between the icon and text
-  // },
   Gicon: {
     width: 30,
     height:30,
   },
   googleButtonText: {
     color: '#000',
+    fontSize:15,
     fontWeight: 'bold',
   },
   terms: {
@@ -171,4 +172,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignupScreen;
+

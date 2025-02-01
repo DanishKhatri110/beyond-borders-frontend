@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
-import {View,Text,StyleSheet,TextInput,TouchableOpacity,Image,KeyboardAvoidingView,ScrollView,Platform,} from "react-native";
+import {View,Text,StyleSheet,TextInput,TouchableOpacity,Image,KeyboardAvoidingView,ScrollView,Platform,Alert} from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
+import * as Clipboard from "expo-clipboard";
+
 
 const MeetingOptionsScreen = ({ navigation }) => {
   const [meetingCode, setMeetingCode] = useState("");
@@ -12,12 +14,16 @@ const MeetingOptionsScreen = ({ navigation }) => {
 
   const handleEnterMeeting = () => {
     // Add functionality for entering a meeting with the code
+    
     console.log("Enter meeting with code:", meetingCode);
+    navigation.navigate("ChatScreen");
   };
 
   const handleCopyCode = () => {
     // Add functionality to copy the code (can use Clipboard API)
-    console.log("Copy code:", meetingCode);
+    Clipboard.setString(meetingCode);
+    Alert.alert("Meeting code has been copied.", meetingCode);
+    // console.log("Copy code:", meetingCode);
   };
   return (
      <KeyboardAvoidingView

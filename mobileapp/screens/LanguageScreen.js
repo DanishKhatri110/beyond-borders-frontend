@@ -54,6 +54,9 @@ const LanguageScreen = ({ route , navigation }) => {
   );
 };
 
+export default LanguageScreen;
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -105,4 +108,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LanguageScreen;

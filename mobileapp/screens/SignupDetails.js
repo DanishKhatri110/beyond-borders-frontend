@@ -115,6 +115,9 @@ const SignupDetails = ({ route, navigation }) => {
   );
 };
 
+export default SignupDetails;
+
+
 const styles = StyleSheet.create({
    container: {
     flex: 1,
@@ -178,4 +181,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignupDetails;

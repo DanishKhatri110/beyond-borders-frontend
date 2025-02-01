@@ -2,16 +2,27 @@
 import React, {useState} from 'react';
 import {View,Text,TextInput,StyleSheet,TouchableOpacity,Image,} from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebaseConfig";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
-   const handleLogin = () => {
-    console.log("Email:", email);
-    console.log("Password:", password);
-    navigation.navigate('MeetingOptions')
+  //  const handleLogin = () => {
+  //   console.log("Email:", email);
+  //   console.log("Password:", password);
+  //   navigation.navigate('MeetingOptions')
+  // };
+  const handleLogin = async () => {
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      navigation.navigate("MeetingOptions"); // Navigate after successful login
+    } catch (error) {
+      setError(error.message); // Display error message
+    }
   };
 
   const togglePasswordVisibility = () => {
@@ -57,6 +68,8 @@ const LoginScreen = ({ navigation }) => {
        <TouchableOpacity>
         <Text style={styles.forgotPassword}>Forgot Password?</Text>
       </TouchableOpacity>
+
+      {error ? <Text style={styles.errorText}>{error}</Text> : null}
 
       <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
         <Text style={styles.loginButtonText}>Log in</Text>
@@ -114,6 +127,11 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     fontSize: 14,
         marginLeft:'65%',
+  },
+  errorText: {
+    color: "#fff",
+    textAlign: "center",
+    marginTop: "2%",
   },
   loginButton: {
     backgroundColor: "#00564D",

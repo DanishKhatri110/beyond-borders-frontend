@@ -49,7 +49,7 @@ const EditProfileScreen = () => {
         onChangeText={setUsername}
         />
       </View>
-      <Text style={styles.label}>Username</Text>
+      <Text style={styles.label}>Mobile</Text>
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
