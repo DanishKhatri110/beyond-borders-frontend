@@ -3,7 +3,8 @@ import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import Constants from 'expo-constants';
 import AppNavigator from './navigation/AppNavigator';
-import VoiceModeScreen1 from './screens/VoiceModeScreen1';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+// import VoiceModeScreen1 from './screens/VoiceModeScreen1';
 
 
 export default function App() {
@@ -17,6 +18,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    height: hp('100%'), // 70% of height device screen
+    width: wp('100%'),   // 80% of width device screen
     marginTop:Constants.statusBarHeight,
   },
 });

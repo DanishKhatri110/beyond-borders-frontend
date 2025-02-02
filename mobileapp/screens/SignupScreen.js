@@ -44,7 +44,11 @@ const SignupScreen = ({ navigation }) => {
          <Text style={styles.buttonText}>Sign up with email</Text>
        </TouchableOpacity>
  
-       <Text style={styles.divider}>or continue with</Text>
+       <View style={styles.dividerContainer}>
+          <View style={styles.line} />
+          <Text style={styles.divider}>or continue with</Text>
+          <View style={styles.line} />
+       </View>
  
        <TouchableOpacity style={styles.googleButton}>
          <Image source={require('../assets/google.png')} style={styles.Gicon}/>
@@ -130,9 +134,21 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
   },
+  dividerContainer: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  width: '100%',
+  marginBottom: '3%',
+  },
+  line: {
+    flex: 1,  // This makes the lines expand to fill available space
+    height: 1, // Thickness of the line
+    backgroundColor: '#fff', // Color of the line
+    marginHorizontal: 10, // Space between line and text
+  },
   divider: {
     color: '#fff',
-    marginBottom: '3%',
+    fontSize: 16,
   },
   googleButton: {
     backgroundColor: '#fff',
