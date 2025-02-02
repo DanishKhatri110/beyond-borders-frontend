@@ -314,6 +314,8 @@ const ChatScreen = ({ navigation }) => {
   );
 };
 
+export default ChatScreen;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -369,7 +371,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     flex: 1,
-    height: 40,
+    // height: 40,
     backgroundColor: "#444",
     borderRadius: 20,
     paddingHorizontal: '5%',
@@ -432,7 +434,7 @@ const styles = StyleSheet.create({
   },
   modalInput: {
     width: "80%",
-    height: 50,
+    // height: 50,
     backgroundColor: "#111",
     borderRadius: 10,
     paddingHorizontal: '5%',
@@ -526,4 +528,3 @@ const styles = StyleSheet.create({
   }
 );
 
-export default ChatScreen;

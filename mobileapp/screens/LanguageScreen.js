@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
   },
   selectButton: {
     width: '80%',
-    height: 50,
+    height: '7%',
     backgroundColor: '#00564D',
     justifyContent: 'center',
     alignItems: 'center',

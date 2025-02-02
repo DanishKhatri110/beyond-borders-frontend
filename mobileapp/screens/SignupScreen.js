@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#000',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 20,
+    padding: '5%',
   },
   imageText: {
     fontSize: 15,

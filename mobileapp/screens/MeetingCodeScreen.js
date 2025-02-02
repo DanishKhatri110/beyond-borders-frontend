@@ -85,6 +85,8 @@ const MeetingCodeScreen = ({ navigation }) => {
   );
 };
 
+export default MeetingCodeScreen;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -92,7 +94,6 @@ const styles = StyleSheet.create({
     padding: '2%',
   },
   header: {
-    // margin: 20,
     alignItems:'center',
   },
   icon: {
@@ -181,5 +182,5 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MeetingCodeScreen;
+
 

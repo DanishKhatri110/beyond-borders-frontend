@@ -85,34 +85,36 @@ const LoginScreen = ({ navigation }) => {
   );
 };
 
+export default LoginScreen;
+
 const styles = StyleSheet.create({
  container: {
     flex: 1,
     backgroundColor: "#000",
     alignItems: "center",
     justifyContent: "center",
-    padding: 20,
+    padding: "5%",
   },
   logo: {
     width: 350,
     height: 200,
-    marginBottom: 30,
+    marginBottom: "8%",
   },
   welcomeText: {
     fontSize: 28,
     fontWeight: "bold",
     color: "#fff",
-    marginBottom: 30,
+    marginBottom: "8%",
   },
   inputContainer: {
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#222",
     borderRadius: 8,
-    paddingHorizontal: 15,
-    marginVertical: 10,
+    paddingHorizontal: "5%",
+    marginVertical: "2%",
     width: "100%",
-    height: 50,
+    height: "8%",
     borderWidth: 1,
     borderColor: "#fff",
   },
@@ -124,9 +126,9 @@ const styles = StyleSheet.create({
   forgotPassword: {
     color: "#00564D",
     alignSelf: "flex-end",
-    marginVertical: 10,
+    marginVertical: "3%",
     fontSize: 14,
-        marginLeft:'65%',
+    marginLeft:'65%',
   },
   errorText: {
     color: "#fff",
@@ -136,10 +138,10 @@ const styles = StyleSheet.create({
   loginButton: {
     backgroundColor: "#00564D",
     borderRadius: 8,
-    paddingVertical: 15,
+    paddingVertical: "4%",
     width: "100%",
     alignItems: "center",
-    marginVertical: 20,
+    marginVertical: "5%",
   },
   loginButtonText: {
     color: "#fff",
@@ -148,7 +150,7 @@ const styles = StyleSheet.create({
   },
   signupContainer: {
     flexDirection: "row",
-    marginTop: 10,
+    marginTop: "3%",
   },
   signupText: {
     color: "#A4A4A4",
@@ -161,4 +163,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;

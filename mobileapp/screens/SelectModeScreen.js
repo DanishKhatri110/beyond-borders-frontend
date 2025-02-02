@@ -21,7 +21,7 @@ const SelectModeScreen = ({ navigation }) => {
     // Optionally, use inputValue here to handle logic for the number of people
     console.log("Number of people:", inputValue);
     setInputValue(""); // Clear input field
-    navigation.navigate("ChatScreen")
+    navigation.navigate("MeetingCode")
   };
 
   return (
@@ -106,6 +106,8 @@ const SelectModeScreen = ({ navigation }) => {
   );
 };
 
+export default SelectModeScreen;
+
 const styles = StyleSheet.create({
    container: {
     flex: 1,
@@ -178,7 +180,7 @@ const styles = StyleSheet.create({
   modalTitle: {
     color: "#fff",
     fontSize: wp("4.5%"),
-    marginBottom: 15,
+    marginBottom: "4%",
     textAlign: "center",
   },
   input: {
@@ -188,14 +190,14 @@ const styles = StyleSheet.create({
     borderColor: "#00564D",
     borderRadius: 5,
     width: "100%",
-    padding: 10,
-    marginBottom: 15,
+    padding: "3%",
+    marginBottom: "4%",
   },
   modalButton: {
     backgroundColor: "#00564D",
     borderRadius: 5,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+    paddingVertical: "3%",
+    paddingHorizontal: "5%",
   },
   modalButtonText: {
     color: "#fff",
@@ -204,4 +206,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SelectModeScreen;

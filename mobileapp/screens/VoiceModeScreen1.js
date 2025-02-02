@@ -175,6 +175,8 @@ const VoiceModeScreen1 = () => {
   );
 };
 
+export default VoiceModeScreen1;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -184,46 +186,45 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingHorizontal: 16,
-    paddingVertical: 10,
+    paddingHorizontal: "4%",
+    paddingVertical: "3%",
     backgroundColor: "#06696b",
   },
   headerText: {
     color: "#fff",
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: "bold",
   },
   content: {
-    paddingHorizontal: 16,
-    paddingTop: 30,
+    paddingHorizontal: "4%",
+    paddingTop: "5%",
   },
   card: {
     backgroundColor: "#111",
     borderColor: "#06696b",
     borderWidth: 1,
     borderRadius: 12,
-    padding: 20,
+    padding: "5%",
     alignItems: "center",
-    marginBottom: 20,
+    marginBottom: "5%",
   },
   messageBox: {
-    marginTop: 10,
+    marginTop: "3%",
     backgroundColor: "#333",
-    padding: 10,
-    borderRadius: 10,
+    padding: "3%",
+    borderRadius: "3%",
     width: "90%",
   },
   messageText: {
     color: "#fff",
     textAlign: "center",
-    fontSize: 14,
-    marginVertical: 2,
+    fontSize: 15,
+    marginVertical: "1%",
   },
   recordingText: {
     color: "#fff",
-    fontSize: 16,
-    marginTop: 10,
+    fontSize: 15,
+    marginTop: "3%",
   },
 });
 
-export default VoiceModeScreen1;
