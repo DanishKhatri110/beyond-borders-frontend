@@ -1,43 +1,32 @@
 {
   "expo": {
-    "name": "mobileapp",
-    "slug": "mobileapp",
+    "name": "BeyondBorders",
+    "slug": "BeyondBorders",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/icons.png",
     "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-
+    
     "ios": {
       "newArchEnabled": true,
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.danish729.mobileapp"
     },
     "android": {
       "softwareKeyboardLayoutMode": "pan",
       "newArchEnabled": true,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#000000"
       },
       "permissions": [
         "CAMERA",
         "WRITE_EXTERNAL_STORAGE"
-      ]
+      ],
+      "package": "com.danish729.mobileapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    },
-    "plugins": [
-      [
-        "expo-font",
-        {
-          "fonts": ["./assets/fonts/Dhurjati-Regular.ttf"]
-        }
-      ]
-    ]
+    }
   }
 }

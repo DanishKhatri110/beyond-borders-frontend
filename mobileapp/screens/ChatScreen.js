@@ -1,11 +1,14 @@
-import React, { useState, useRef } from 'react';
-import { View, Image, Text, TextInput, TouchableOpacity, Modal, StyleSheet, FlatList, Alert, KeyboardAvoidingView, Platform, TouchableWithoutFeedback} from 'react-native';
+import React, { useState, useRef, useEffect } from 'react';
+import { View, Image, Text, TextInput, TouchableOpacity, Modal, StyleSheet, FlatList, Alert, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard} from 'react-native';
 import * as Clipboard from "expo-clipboard";
 import QRCode from "react-native-qrcode-svg";
 import { FontAwesome, MaterialIcons, Ionicons, MaterialCommunityIcons, FontAwesome5 } from "@expo/vector-icons";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import Constants from 'expo-constants';
 
-const ChatScreen = ({ navigation }) => {
-  
+
+function ChatScreen({ navigation }) {
+
   const [messages, setMessages] = useState([
     { id: "1", text: "This is the main chat template", isUser: false },
     { id: "2", text: "Oh?", isUser: true },
@@ -32,36 +35,36 @@ const ChatScreen = ({ navigation }) => {
   const [isEndModalVisible, setEndModalVisible] = useState(false);
   const [addPeople, setAddPeople] = useState("");
   const flatListRef = useRef(null);
- 
+
   const sendMessage = () => {
     if (newMessage.trim().length > 0) {
-      
+
       setMessages((prev) => [
         ...prev,
         { id: Date.now().toString(), text: newMessage, isUser: true },
       ]);
 
       setNewMessage("");
-      
+
       // Scroll to the last message
-       setTimeout(() => flatListRef.current?.scrollToEnd({ animated: true }), 100);
+      setTimeout(() => flatListRef.current?.scrollToEnd({ animated: true }), 100);
     }
   };
 
   const [meetingCode] = useState("MDIF-3094I-9023K");
-  
+
   const handleCopyToClipboard = () => {
     Clipboard.setString(meetingCode);
     Alert.alert("Copied to Clipboard!", "Meeting code has been copied.");
   };
-  
+
   const handleShareQRCode = () => {
     Alert.alert("Share QR Code", "QR code shared successfully! (Simulated)");
     // Implement actual sharing functionality if needed.
   };
 
   const renderMessage = ({ item }) => (
-   
+
     <View
       style={[
         styles.messageBubble,
@@ -76,7 +79,6 @@ const ChatScreen = ({ navigation }) => {
   //   setShowModal(null);
   //   // Add logic to enhandleEndMeetingd the meeting
   // };
-
   const [isMuted, setIsMuted] = useState(false); // State to track mute/unmute
 
 
@@ -85,67 +87,62 @@ const ChatScreen = ({ navigation }) => {
   };
 
   return (
-    
     <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"} 
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : -40} 
       style={styles.container}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
       {/* Top Menu Bar */}
       <View style={styles.menuBar}>
         <Image source={require('../assets/icons.png')} style={styles.image} />
-        <TouchableOpacity onPress={toggleMute} style={{marginLeft:'70%'}}>
-            <Ionicons 
-              name={isMuted ? "volume-mute" : "volume-high"} // Dynamic icon based on state
-              size={24} 
-              color="#fff" 
-            />
+        <TouchableOpacity onPress={toggleMute} style={{ marginLeft: '70%' }}>
+          <Ionicons
+            name={isMuted ? "volume-mute" : "volume-high"} // Dynamic icon based on state
+            size={24}
+            color="#fff" />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => {
-          setIsModalVisible(true)
-        }}
+          setIsModalVisible(true);
+        } }
         >
           <Ionicons name="ellipsis-vertical" size={24} color="#fff" />
         </TouchableOpacity>
       </View>
 
       {/* Chat Messages */}
-     
+
       <FlatList
         ref={flatListRef}
         data={messages}
         renderItem={renderMessage}
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.chatContainer}
-        // keyboardDismissMode="on-drag"
-        keyboardShouldPersistTaps="handled" 
-        automaticallyAdjustKeyboardInsets
-          />   
+        keyboardDismissMode="on-drag"
+        keyboardShouldPersistTaps="handled"
+        automaticallyAdjustKeyboardInsets />
 
       {/* Input Area */}
-     
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.textInput}
-          placeholder="Message..."
-          placeholderTextColor="#aaa"
-          value={newMessage}
-          onChangeText={setNewMessage}
-          
-          />
-        <TouchableOpacity onPress={()=>navigation.navigate("VoiceModeScreen1")} style={styles.sendButton}>
-          <FontAwesome name="microphone" size={24} color="#fff" />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={sendMessage} style={styles.sendButton}>
-          <Ionicons name="send" size={24} color="#fff" />
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.textInput}
+            placeholder="Message..."
+            placeholderTextColor="#aaa"
+            value={newMessage}
+            onChangeText={setNewMessage} />
+          <TouchableOpacity onPress={() => navigation.navigate("VoiceModeScreen1")} style={styles.sendButton}>
+            <FontAwesome name="microphone" size={24} color="#fff" />
           </TouchableOpacity>
-        </View>  
+          <TouchableOpacity onPress={sendMessage} style={styles.sendButton}>
+            <Ionicons name="send" size={24} color="#fff" />
+          </TouchableOpacity>
+        </View>
 
       {/* Modal */}
-        <Modal
-          animationType="fade"
-          transparent={true}
-          visible={isModalVisible}
-          onRequestClose={() => setIsModalVisible(false)}
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={isModalVisible}
+        onRequestClose={() => setIsModalVisible(false)}
       >
         <TouchableWithoutFeedback onPress={() => setIsModalVisible(false)}>
           <View style={styles.modalMenuContainer}>
@@ -155,10 +152,10 @@ const ChatScreen = ({ navigation }) => {
                   console.log("Add People Clicked");
                   setIsModalVisible(false);
                   setAddModalVisible(true);
-                }}
+                } }
                 style={[styles.modalOption, { borderBottomWidth: 2, borderBottomColor: '#00564D', padding: '1%' }]}
               >
-           
+
                 <Text style={styles.modalText}>Add People</Text>
                 <Ionicons name="person-add" size={24} color="#fff" />
               </TouchableOpacity>
@@ -167,7 +164,7 @@ const ChatScreen = ({ navigation }) => {
                   console.log("Scan QR Code Clicked");
                   setIsModalVisible(false);
                   setQrModalVisible(true);
-                }}
+                } }
                 style={[styles.modalOption, { borderBottomWidth: 2, borderBottomColor: '#00564D', padding: '1%' }]}
               >
                 <Text style={styles.modalText}>Scan QR Code</Text>
@@ -178,17 +175,17 @@ const ChatScreen = ({ navigation }) => {
                   console.log("End Meeting Clicked");
                   setIsModalVisible(false);
                   setEndModalVisible(true);
-                }}
+                } }
                 style={styles.modalOption}
               >
-                  <Text style={styles.modalText}>End Meeting</Text>
-                  <FontAwesome5 name="phone-slash" size={24} color="#fff" />
+                <Text style={styles.modalText}>End Meeting</Text>
+                <FontAwesome5 name="phone-slash" size={24} color="#fff" />
               </TouchableOpacity>
             </View>
           </View>
         </TouchableWithoutFeedback>
-        </Modal>
-     {/* Add People Modal */}
+      </Modal>
+      {/* Add People Modal */}
       <Modal
         visible={isAddModalVisible}
         animationType="slide"
@@ -196,32 +193,31 @@ const ChatScreen = ({ navigation }) => {
         onRequestClose={() => setAddModalVisible(false)}
       >
         <TouchableWithoutFeedback onPress={() => setAddModalVisible(false)}>
-          <View style={styles.mainModal}>  
-              <View style={styles.modalContainer}>
-                <Text style={styles.modalTitle}>
-                  Increase Number of People Allowed in the Meeting:
-                </Text>
-                <TextInput
-                  style={styles.modalInput}
-                  placeholder="Add People"
-                  placeholderTextColor="#aaa"
-                  value={addPeople}
-                  onChangeText={setAddPeople}
-                  keyboardType="numeric"
-                />
-                <TouchableOpacity
-                  style={styles.modalButton}
-                  onPress={() => {
-                    Alert.alert("Added", `${addPeople} added to the meeting.`);
-                    setAddPeople("");
-                    setAddModalVisible(false);
-                  }}
-                >
-                  <Text style={styles.modalButtonText}>Add</Text>
-                </TouchableOpacity>
+          <View style={styles.mainModal}>
+            <View style={styles.modalContainer}>
+              <Text style={styles.modalTitle}>
+                Increase Number of People Allowed in the Meeting:
+              </Text>
+              <TextInput
+                style={styles.modalInput}
+                placeholder="Add People"
+                placeholderTextColor="#aaa"
+                value={addPeople}
+                onChangeText={setAddPeople}
+                keyboardType="numeric" />
+              <TouchableOpacity
+                style={styles.modalButton}
+                onPress={() => {
+                  Alert.alert("Added", `${addPeople} added to the meeting.`);
+                  setAddPeople("");
+                  setAddModalVisible(false);
+                } }
+              >
+                <Text style={styles.modalButtonText}>Add</Text>
+              </TouchableOpacity>
             </View>
-          </View>    
-        </TouchableWithoutFeedback>  
+          </View>
+        </TouchableWithoutFeedback>
       </Modal>
 
       {/* QR Code Modal */}
@@ -232,7 +228,7 @@ const ChatScreen = ({ navigation }) => {
         onRequestClose={() => setQrModalVisible(false)}
       >
         <TouchableWithoutFeedback onPress={() => setQrModalVisible(false)}>
-          <View style={styles.mainModal}> 
+          <View style={styles.mainModal}>
             <View style={styles.modalQrContainer}>
               <View style={styles.meetingCodeContainer}>
                 <Text style={styles.label}>Meeting code</Text>
@@ -240,28 +236,26 @@ const ChatScreen = ({ navigation }) => {
                   <TextInput
                     value={meetingCode}
                     editable={false}
-                    style={styles.input}
-                  />
+                    style={styles.input} />
                   <TouchableOpacity onPress={handleCopyToClipboard}>
-                    <MaterialIcons name='content-copy' size={24} style={styles.copyIcon}/>
+                    <MaterialIcons name='content-copy' size={24} style={styles.copyIcon} />
                   </TouchableOpacity>
                 </View>
               </View>
 
               {/* QR Code Section */}
               <Text style={styles.qrLabel}>Scan QR code to enter meeting</Text>
-              <View style={styles.qrView}>  
-                  <QRCode
-                    value={meetingCode}
-                    size={200}
-                    backgroundColor="white"
-                    color="black"
-                  />
-              </View>    
+              <View style={styles.qrView}>
+                <QRCode
+                  value={meetingCode}
+                  size={200}
+                  backgroundColor="white"
+                  color="black" />
+              </View>
               <Text style={styles.underLined}></Text>
-          
+
               {/* Share QR Code */}
-                
+
               <View style={styles.linkView}>
                 <Text style={styles.shareLink}>{' '}
                   <Text style={styles.link} onPress={handleShareQRCode}>
@@ -269,15 +263,15 @@ const ChatScreen = ({ navigation }) => {
                   </Text>{' '} to share QR code.</Text>
               </View>
               <View style={styles.qrCodePlaceholder} />
-                <TouchableOpacity
-                  style={styles.modalButton}
-                  onPress={() => setQrModalVisible(false)}
-                >
-                  <Text style={styles.modalButtonText}>Close</Text>
-                </TouchableOpacity>
-              </View>
-          </View>     
-        </TouchableWithoutFeedback>  
+              <TouchableOpacity
+                style={styles.modalButton}
+                onPress={() => setQrModalVisible(false)}
+              >
+                <Text style={styles.modalButtonText}>Close</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
       </Modal>
 
       {/* End Meeting Modal */}
@@ -288,39 +282,41 @@ const ChatScreen = ({ navigation }) => {
         onRequestClose={() => setEndModalVisible(false)}
       >
         <TouchableWithoutFeedback onPress={() => setEndModalVisible(false)}>
-            <View style={styles.mainModal}>
-              <View style={styles.modalContainer}>
-                <Text style={styles.modalTitle}>Are you sure you want to End meeting?</Text>
-                <View style={styles.modalActions}>
-                  <TouchableOpacity
-                    style={[styles.modalButton, styles.modalDangerButton]}
-                    onPress={() => {
-                      Alert.alert("Meeting Ended");
-                      setEndModalVisible(false);
-                    }}
-                  >
-                    <Text style={styles.modalButtonText}>End</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={styles.modalButton}
-                    onPress={() => setEndModalVisible(false)}
-                  >
-                    <Text style={styles.modalButtonText}>Cancel</Text>
-                  </TouchableOpacity>
-                </View>
+          <View style={styles.mainModal}>
+            <View style={styles.modalContainer}>
+              <Text style={styles.modalTitle}>Are you sure you want to End meeting?</Text>
+              <View style={styles.modalActions}>
+                <TouchableOpacity
+                  style={[styles.modalButton, styles.modalDangerButton]}
+                  onPress={() => {
+                    Alert.alert("Meeting Ended");
+                    setEndModalVisible(false);
+                  } }
+                >
+                  <Text style={styles.modalButtonText}>End</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.modalButton}
+                  onPress={() => setEndModalVisible(false)}
+                >
+                  <Text style={styles.modalButtonText}>Cancel</Text>
+                </TouchableOpacity>
               </View>
-            </View>  
-          </TouchableWithoutFeedback>
-        </Modal>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </Modal>
     </KeyboardAvoidingView>
   );
-};
+}
 
 export default ChatScreen;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    height: hp('100%'), 
+    width: wp('100%'), 
     backgroundColor: "#000",
   },
   menuBar: {
@@ -363,15 +359,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: '1%',
     marginHorizontal: '3%',
-    marginBottom:'1%',
     backgroundColor: "#111",
     borderWidth: 2,
     borderRadius:10,
-    borderColor:"#444",
+    borderColor: "#444",
+    marginBottom:Constants.statusBarHeight,
   },
   textInput: {
     flex: 1,
-    // height: 40,
+    height: '80%',
     backgroundColor: "#444",
     borderRadius: 20,
     paddingHorizontal: '5%',

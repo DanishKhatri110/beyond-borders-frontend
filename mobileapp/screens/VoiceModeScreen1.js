@@ -1,12 +1,6 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-  Alert,
-} from "react-native";
+import {View, Text, StyleSheet, TouchableOpacity, ScrollView, Alert} from "react-native";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { Audio } from "expo-av";
 import * as Speech from "expo-speech";
@@ -180,6 +174,8 @@ export default VoiceModeScreen1;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    height: hp('100%'), 
+    width: wp('100%'),
     backgroundColor: "#000",
   },
   header: {

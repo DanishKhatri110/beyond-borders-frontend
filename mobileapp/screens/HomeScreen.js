@@ -1,6 +1,8 @@
 // screens/HomeScreen.js
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, Linking} from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, Linking } from 'react-native';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
 
 const HomeScreen = ({ navigation }) => {
    const handleTermsPress = () => {
@@ -64,6 +66,8 @@ const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
  container: {
     flex: 1,
+    height: hp('100%'), 
+    width: wp('100%'), 
     backgroundColor: '#000',
     alignItems: 'center',
     justifyContent: 'center',

@@ -1,6 +1,8 @@
 // screens/SplashScreen.js
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
 
 const SplashScreen = ({ navigation }) => {
   useEffect(() => {
@@ -21,6 +23,8 @@ const SplashScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    height: hp('100%'), 
+    width: wp('100%'), 
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#000',

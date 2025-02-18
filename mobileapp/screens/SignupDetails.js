@@ -1,6 +1,7 @@
 // screens/SignupScreen.js
 import React, {useState} from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { MaterialIcons } from "@expo/vector-icons";
 
 const SignupDetails = ({ route, navigation }) => {
@@ -121,6 +122,8 @@ export default SignupDetails;
 const styles = StyleSheet.create({
    container: {
     flex: 1,
+    height: hp('100%'), 
+    width: wp('100%'),  
     backgroundColor: "#000",
     alignItems: "center",
     justifyContent: "center",

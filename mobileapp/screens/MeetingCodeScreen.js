@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, Image, Alert } from "react-native";
 import * as Clipboard from "expo-clipboard";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 // import { Share } from "react-native";
 import QRCode from "react-native-qrcode-svg";
 import { MaterialIcons } from "@expo/vector-icons";
 
 const MeetingCodeScreen = ({ navigation }) => {
 
-  const [meetingCode] = useState("MDIF-3094I-9023K");
+  const [meetingCode,setMeetingCode] = useState("MDIF-3094I-9023k");
 
   const handleCopyToClipboard = () => {
     Clipboard.setString(meetingCode);
@@ -42,8 +43,9 @@ const MeetingCodeScreen = ({ navigation }) => {
         <Text style={styles.label}>Meeting code</Text>
         <View style={styles.inputContainer}>
           <TextInput
-            value={meetingCode}
-            editable={false}
+              value={meetingCode}
+              onChangeText={setMeetingCode}
+            // editable={false}
             style={styles.input}
           />
           <TouchableOpacity onPress={handleCopyToClipboard}>
@@ -90,6 +92,8 @@ export default MeetingCodeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    height: hp('100%'), 
+    width: wp('100%'), 
     backgroundColor: "#000", // Dark background
     padding: '2%',
   },

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import {View,Text,TextInput,StyleSheet,TouchableOpacity,Image,Platform,} from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { MaterialIcons } from "@expo/vector-icons";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
 
 const EditProfileScreen = () => {
 
@@ -131,6 +133,8 @@ export default EditProfileScreen
 const styles = StyleSheet.create({
    container: {
     flex: 1,
+    height: hp('100%'), 
+    width: wp('100%'), 
     backgroundColor: "#121212",
     padding: '5%',
   },

@@ -2,8 +2,10 @@
 import React, {useState} from 'react';
 import {View,Text,TextInput,StyleSheet,TouchableOpacity,Image,} from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebaseConfig";
+
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -90,6 +92,8 @@ export default LoginScreen;
 const styles = StyleSheet.create({
  container: {
     flex: 1,
+    height: hp('100%'), 
+    width: wp('100%'), 
     backgroundColor: "#000",
     alignItems: "center",
     justifyContent: "center",

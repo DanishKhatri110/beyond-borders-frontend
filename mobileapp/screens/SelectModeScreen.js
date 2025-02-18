@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, Modal, TextInput } from 'react-native';
 import { Ionicons } from "@expo/vector-icons"; 
-import { widthPercentageToDP as wp } from "react-native-responsive-screen";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 const SelectModeScreen = ({ navigation }) => {
 
@@ -111,6 +111,8 @@ export default SelectModeScreen;
 const styles = StyleSheet.create({
    container: {
     flex: 1,
+    height: hp('100%'), 
+    width: wp('100%'),  
     backgroundColor: "#000", // Black background
     alignItems: "center",
     justifyContent: "center",

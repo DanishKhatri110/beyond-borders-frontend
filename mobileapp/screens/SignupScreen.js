@@ -1,6 +1,8 @@
 // screens/SignupScreen.js
 import React, {useState} from 'react';
 import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity, Image, Linking } from 'react-native';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
 
 const SignupScreen = ({ navigation }) => {
   const [signupEmail, setSignupEmail] = useState('');
@@ -80,6 +82,8 @@ export default SignupScreen;
 const styles = StyleSheet.create({
  container: {
     flex: 1,
+    height: hp('100%'), 
+    width: wp('100%'), 
     backgroundColor: '#000',
     alignItems: 'center',
     justifyContent: 'center',
@@ -120,7 +124,8 @@ const styles = StyleSheet.create({
     marginBottom: '4%',
     width: '100%',
     borderWidth: 2,
-    borderColor:'white',
+    borderColor: 'white',
+    color:'#fff',
   },
   button: {
     backgroundColor: '#00564D',

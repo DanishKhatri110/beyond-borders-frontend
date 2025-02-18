@@ -3,6 +3,8 @@ import { View, Text, StyleSheet, TouchableOpacity, Image, Linking, Platform } fr
 import {LinearGradient}  from 'expo-linear-gradient';
 import { Title, Card } from 'react-native-paper';
 import { FontAwesome } from '@expo/vector-icons';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
 
 const ProfileScreen = ({route , navigation}) => {
   
@@ -78,6 +80,8 @@ export default ProfileScreen
 const styles = StyleSheet.create({
      container: {
     flex: 1,
+    height: hp('100%'), 
+    width: wp('100%'),
     backgroundColor: "#000",
     // alignItems: "center",
     // justifyContent: "center",

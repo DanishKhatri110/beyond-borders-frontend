@@ -2,6 +2,8 @@
 import React,{ useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
 
 const LanguageScreen = ({ route , navigation }) => {
 
@@ -60,6 +62,8 @@ export default LanguageScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    height: hp('100%'), 
+    width: wp('100%'), 
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#000',

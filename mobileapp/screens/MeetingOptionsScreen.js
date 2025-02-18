@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {View,Text,StyleSheet,TextInput,TouchableOpacity,Image,KeyboardAvoidingView,ScrollView,Platform,Alert} from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import * as Clipboard from "expo-clipboard";
 
 
@@ -82,6 +83,8 @@ const MeetingOptionsScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
    container: {
     flex: 1,
+    height: hp('100%'), 
+    width: wp('100%'),
     backgroundColor: "#000",
     
   },
